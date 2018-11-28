@@ -5,13 +5,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{367D67AE-5349-4C1B-A0F6-5D57388BC97B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>ProyectoAplicadaI</RootNamespace>
     <AssemblyName>ProyectoAplicadaI</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,21 +31,435 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ArticulosBLL.cs" />
+    <Compile Include="BLL\ClienteBLL.cs" />
+    <Compile Include="BLL\CobrosBLL.cs" />
+    <Compile Include="BLL\IREPOSITORY.cs" />
+    <Compile Include="BLL\EmpeñosBLL.cs" />
+    <Compile Include="BLL\EmpeñosDetalleBLL.cs" />
+    <Compile Include="BLL\RepositorioBase.cs" />
+    <Compile Include="BLL\UsuariosBLL.cs" />
+    <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\Articulos.cs" />
+    <Compile Include="Entidades\Clientes.cs" />
+    <Compile Include="Entidades\Cobros.cs" />
+    <Compile Include="Entidades\EmpeñosDetalle.cs" />
+    <Compile Include="Entidades\Empeños.cs" />
+    <Compile Include="Entidades\Usuarios.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodePago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodePago.Designer.cs">
+      <DependentUpon>RegistrodePago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeClientes.Designer.cs">
+      <DependentUpon>ConsultadeClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeArticulos.Designer.cs">
+      <DependentUpon>ConsultadeArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadePagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadePagos.Designer.cs">
+      <DependentUpon>ConsultadePagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeArticulosEmpeñados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeArticulosEmpeñados.Designer.cs">
+      <DependentUpon>ConsultadeArticulosEmpeñados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeRecibos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeRecibos.Designer.cs">
+      <DependentUpon>ConsultadeRecibos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultadeUsuarios.Designer.cs">
+      <DependentUpon>ConsultadeUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeEmpeño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeEmpeño.Designer.cs">
+      <DependentUpon>RegistrodeEmpeño.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeUsuarios.Designer.cs">
+      <DependentUpon>RegistrodeUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeArticulos.Designer.cs">
+      <DependentUpon>RegistrodeArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrodeClientes.Designer.cs">
+      <DependentUpon>RegistrodeClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\Cobrosreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cobrosreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ListadeRecibosdeEmpeño.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadeRecibosdeEmpeño.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteArticulos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteArticulos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportedeArticulosEmpeñados.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportedeArticulosEmpeñados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteRecibo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteRecibo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\RepoteClientes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepoteClientes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteUsuarios.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteUsuarios.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\ArticulosReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\ArticulosReporte.Designer.cs">
+      <DependentUpon>ArticulosReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\ClienteReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\ClienteReporte.Designer.cs">
+      <DependentUpon>ClienteReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\ReportedeCobros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\ReportedeCobros.Designer.cs">
+      <DependentUpon>ReportedeCobros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\UsuarioReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\UsuarioReporte.Designer.cs">
+      <DependentUpon>UsuarioReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\VentanaArticulosdelAlmacen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\VentanaArticulosdelAlmacen.Designer.cs">
+      <DependentUpon>VentanaArticulosdelAlmacen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\VentanadeListadeEmpeños.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\VentanadeListadeEmpeños.Designer.cs">
+      <DependentUpon>VentanadeListadeEmpeños.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\VentanaReciboReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VentanasReportes\VentanaReciboReporte.Designer.cs">
+      <DependentUpon>VentanaReciboReporte.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es-DO.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrodePago.resx">
+      <DependentUpon>RegistrodePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultadeClientes.resx">
+      <DependentUpon>ConsultadeClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultadeArticulos.resx">
+      <DependentUpon>ConsultadeArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultadePagos.resx">
+      <DependentUpon>ConsultadePagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultadeArticulosEmpeñados.resx">
+      <DependentUpon>ConsultadeArticulosEmpeñados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultadeRecibos.resx">
+      <DependentUpon>ConsultadeRecibos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultadeUsuarios.resx">
+      <DependentUpon>ConsultadeUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrodeArticulos.resx">
+      <DependentUpon>RegistrodeArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrodeClientes.resx">
+      <DependentUpon>RegistrodeClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrodeEmpeño.resx">
+      <DependentUpon>RegistrodeEmpeño.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrodeUsuarios.resx">
+      <DependentUpon>RegistrodeUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\Cobrosreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Cobrosreport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ListadeRecibosdeEmpeño.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadeRecibosdeEmpeño.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteArticulos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteArticulos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReportedeArticulosEmpeñados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportedeArticulosEmpeñados.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteRecibo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteRecibo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\RepoteClientes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RepoteClientes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteUsuarios.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteUsuarios.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\ArticulosReporte.resx">
+      <DependentUpon>ArticulosReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\ClienteReporte.resx">
+      <DependentUpon>ClienteReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\ReportedeCobros.resx">
+      <DependentUpon>ReportedeCobros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\UsuarioReporte.resx">
+      <DependentUpon>UsuarioReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\VentanaArticulosdelAlmacen.resx">
+      <DependentUpon>VentanaArticulosdelAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\VentanadeListadeEmpeños.resx">
+      <DependentUpon>VentanadeListadeEmpeños.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VentanasReportes\VentanaReciboReporte.resx">
+      <DependentUpon>VentanaReciboReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.Articulos.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.CapitaldeNegocios.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.Clientes.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.Cobro.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.EntradadeActivos.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.ReciboDetalles.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.Recibos.datasource" />
+    <None Include="Properties\DataSources\ProyectoAplicadaI.ENTIDADES.Usuarios.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_Password_1_32.png" />
+    <None Include="Resources\icons8_Customer_322.png" />
+    <None Include="Resources\icons8_Customer_321.png" />
+    <None Include="Resources\icons8_Cash_in_Hand_321.png" />
+    <None Include="Resources\icons8_Delete_Document_323.png" />
+    <None Include="Resources\icons8_Cash_in_Hand_32.png" />
+    <None Include="Resources\icons8_Broom_323.png" />
+    <None Include="Resources\icons8_View_328.png" />
+    <None Include="Resources\icons8_Cancel_321.png" />
+    <None Include="Resources\icons8_Exit_321.png" />
+    <None Include="Resources\icons8_Payment_History_32.png" />
+    <None Include="Resources\icons8_Bill_322.png" />
+    <None Include="Resources\icons8_Cash_Register_32.png" />
+    <None Include="Resources\Login1.png" />
+    <None Include="Resources\Login.png" />
+    <None Include="Resources\icons8_Bill_321.png" />
+    <None Include="Resources\icons8_Print_325.png" />
+    <None Include="Resources\icons8_Print_324.png" />
+    <None Include="Resources\icons8_View_327.png" />
+    <None Include="Resources\icons8_Print_323.png" />
+    <None Include="Resources\icons8_View_326.png" />
+    <None Include="Resources\icons8_Print_322.png" />
+    <None Include="Resources\icons8_View_325.png" />
+    <None Include="Resources\icons8_Print_321.png" />
+    <None Include="Resources\icons8_View_324.png" />
+    <None Include="Resources\icons8_View_323.png" />
+    <None Include="Resources\icons8_Print_32.png" />
+    <None Include="Resources\icons8_Reset_32.png" />
+    <None Include="Resources\icons8_Delete_Document_322.png" />
+    <None Include="Resources\icons8_Save_322.png" />
+    <None Include="Resources\icons8_Broom_322.png" />
+    <None Include="Resources\icons8_View_322.png" />
+    <None Include="Resources\icons8_Delete_Document_321.png" />
+    <None Include="Resources\icons8_Save_321.png" />
+    <None Include="Resources\icons8_Broom_321.png" />
+    <None Include="Resources\icons8_Plus_32.png" />
+    <None Include="Resources\icons8_Delete_Document_32.png" />
+    <None Include="Resources\icons8_Save_32.png" />
+    <None Include="Resources\icons8_Broom_32.png" />
+    <None Include="Resources\icons8_View_321.png" />
+    <None Include="Resources\icons8_Bill_32.png" />
+    <None Include="Resources\icons8_View_32.png" />
+    <None Include="Resources\icons8_Form_32.png" />
+    <None Include="Resources\icons8_Low_Price_32.png" />
+    <None Include="Resources\icons8_Customer_32.png" />
+    <None Include="Resources\icons8_Receipt_32.png" />
+    <None Include="Resources\icons8_Washing_Machine_32.png" />
+    <None Include="Resources\icons8_Person_32.png" />
+    <None Include="Resources\icons8_Paper_Money_32.png" />
+    <None Include="Resources\icons8_Bank_32.png" />
+    <None Include="Resources\icons8_Exit_32.png" />
+    <None Include="Resources\icons8_Windows8_32.png" />
+    <None Include="Resources\icons8_Cancel_32.png" />
+    <None Include="Resources\icons8_Login32_32.png" />
+    <None Include="Resources\icons8_Login_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_Customer_323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_Password_1_321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maxresdefault.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maxresdefault1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pawn-shop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pawn-shop %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\81bT8c+un3L._RI_.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Scripts\Scripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
